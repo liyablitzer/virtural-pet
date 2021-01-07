@@ -165,7 +165,7 @@
         varlowestStat = Math.min(food, water, play, groom)
         var imageSrc
 
-        if (lowestStat ,= 0) {
+        if (lowestStat <= 0) {
           imageSrc = 'moods/pass-out.png'
           if (hasNotPassedOut) {
             toggeleInteractivity()
@@ -178,7 +178,7 @@
         else if (lowestStat < 80) {
           imageSrc = 'moods/neutral.png'
         }
-        else of (lowestStat < 175) {
+        else if (lowestStat < 175) {
           imageSrc = 'moods/upbeat.png'
         }
         else {
