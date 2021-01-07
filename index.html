@@ -72,7 +72,7 @@
 
               <div id="food-row" class="activity-row">
                 <img class="activity-icon" src="icons/food.png" />
-                <div id="food stat" class="activity-stat">50</div>
+                <div id="food-stat" class="activity-stat">50</div>
                 <div class="activity-button" onclick="giveFood()">Eat food</div>
               </div>
 
@@ -84,13 +84,13 @@
 
               <div id="play-row" class="activity-row">
                 <img class="activity-icon" src="icons/play.png" />
-                <div id="play.stat" class="activity-stat">50</div>
+                <div id="play-stat" class="activity-stat">50</div>
                 <div class="activity-button" onclick="givePlay()">Play</div>
               </div>
 
               <div id="groom-row" class="activity-row">
                 <img class="activity-icon" src="icons/groom.png" />
-                <div id="groom.stat" class="activity-stat">50</div>
+                <div id="groom-stat" class="activity-stat">50</div>
                 <div class="activity-button" onclick="giveGroom()">Groom</div>
               </div>
 
@@ -118,9 +118,9 @@
 
     // Food
       var giveFood = () => {
-        foor = food +15
-        water = water - 5
-        play = play -5
+        foor = food + 5
+        water = water - 2
+        play = play - 2
         groom = groom - 1
 
         updateHTML()
@@ -128,20 +128,20 @@
 
     // Water
       var giveWater = () => {
-        water = water + 15
-        food = food - 5
+        water = water + 5
+        food = food - 1
         play = play - 2
-        groom = groom -1
+        groom = groom - 1
 
         updateHTML()
       }
 
     // Play
       var givePlay = () => {
-        play = play + 30
-        water = water - 15
-        food = food - 10
-        groom = groom - 20
+        play = play + 10
+        water = water - 10
+        food = food - 5
+        groom = groom - 15
 
         updateHTML()
       }
@@ -159,7 +159,7 @@
       var updateHTML = () => {
         document.getElementById("food-stat").innerHTML = food
         document.getElementById("water-stat").innerHTML = water
-        document.getElementById("play=stat").innerHTML = play
+        document.getElementById("play-stat").innerHTML = play
         document.getElementById("groom-stat").innerHTML = groom
 
         varlowestStat = Math.min(food, water, play, groom)
@@ -178,7 +178,7 @@
         else if (lowestStat < 80) {
           imageSrc = 'moods/neutral.png'
         }
-        else if (lowestStat < 175) {
+        else if (lowestStat < 170) {
           imageSrc = 'moods/upbeat.png'
         }
         else {
@@ -189,9 +189,9 @@
       }
 
       var agePet = () => {
-        water = water - 8
-        food = food - 4
-        play = play - 2
+        water = water - 3
+        food = food - 2
+        play = play - 3
         groom = groom - 1
         updateHTML()
       }
