@@ -54,45 +54,169 @@
             justify-items: center;
             align-items: center;
             }
+            .hideden {
+              display: none;
+            }
         </style>
     </head>
     <body>
         <div class="header">
-          <div class="pet name">Tucker</div>
+          <div class="pet name"><b>Scruncie</b></div>
           <div class="description">He is very loyal and family-friendly. He likes to run outside and play fetch. His favorite toy is a squeaky stuffed moose with a red scarf.</div>
         </div>
         <div class="main">
             <div class="image-area">
-                <img class="pet-image" src='neutral.png' />
+                <img class="pet-image" src='moods/neutral.png' />
             </div>
-            <div class="interactive-area">I'm the interactive area</div>
-              <div class="activity-row">
-                <img class="activity-icon" src="food.png" />
-                <div class="activity-stat">25</div>
-                <div class="activity-button">Eat food</div>
+            <div class="interactive-area">
+
+              <div id="food-row" class="activity-row">
+                <img class="activity-icon" src="icons/food.png" />
+                <div id="food stat" class="activity-stat">50</div>
+                <div class="activity-button" onclick="giveFood()">Eat food</div>
               </div>
-              <div class="activity-row">
-                <img class="activity-icon" src="water.png" />
-                <div class="activity-stat">25</div>
-                <div class="activity-button">Drink water</div>
+
+              <div id="water-row" class="activity-row">
+                <img class="activity-icon" src="icons/water.png" />
+                <div id="water-stat" class="activity-stat">50</div>
+                <div class="activity-button" onclick="giveWater()">Drink water</div>
               </div>
-              <div class="activity-row">
-                <img class="activity-icon" src="play.png" />
-                <div class="activity-stat">25</div>
-                <div class="activity-button">Exercise</div>
+
+              <div id="play-row" class="activity-row">
+                <img class="activity-icon" src="icons/play.png" />
+                <div id="play.stat" class="activity-stat">50</div>
+                <div class="activity-button" onclick="givePlay()">Play</div>
               </div>
-              <div class="activity-row">
-                <img class="activity-icon" src="groom.png" />
-                <div class="activity-stat">25</div>
-                <div class="activity-button">Groom</div>
+
+              <div id="groom-row" class="activity-row">
+                <img class="activity-icon" src="icons/groom.png" />
+                <div id="groom.stat" class="activity-stat">50</div>
+                <div class="activity-button" onclick="giveGroom()">Groom</div>
               </div>
+
+              <div id="end-game" class="end-game hidden">
+                <div class="message">
+                  OH NO! Your pet has passed out! :(
+                </div>
+                <div class="activity-button restart-button" onclick="restart()">
+                  Restart
+                </div>
+              </div>
+  
             </div>
-    <p>
-        <img class="pet-image" src='passed-out.png' />
-        <img class="pet-image" src='tired.png' />
-        <img class="pet-image" src='upbeat.png' />
-        <img class="pet-image" src='exuberant.png' />
-    </p>
-        </div>
+          </div>
     </body>
+
+    <script>
+    // Variables
+      var hasNotPassedOut = true
+
+      var food = 50
+      var water = 50
+      var play = 50
+      var groom = 50
+
+    // Food
+      var giveFood = () => {
+        foor = food +15
+        water = water - 5
+        play = play -5
+        groom = groom - 1
+
+        updateHTML()
+      }
+
+    // Water
+      var giveWater = () => {
+        water = water + 15
+        food = food - 5
+        play = play - 2
+        groom = groom -1
+
+        updateHTML()
+      }
+
+    // Play
+      var givePlay = () => {
+        play = play + 30
+        water = water - 15
+        food = food - 10
+        groom = groom - 20
+
+        updateHTML()
+      }
+
+    // Groom
+      var giveGroom = () => {
+        groom = groom + 20
+        water = water - 5
+        food = food - 5
+        play = play - 5
+
+        updateHTML()
+      }
+
+      var updateHTML = () => {
+        document.getElementById("food-stat").innerHTML = food
+        document.getElementById("water-stat").innerHTML = water
+        document.getElementById("play=stat").innerHTML = play
+        document.getElementById("groom-stat").innerHTML = groom
+
+        varlowestStat = Math.min(food, water, play, groom)
+        var imageSrc
+
+        if (lowestStat ,= 0) {
+          imageSrc = 'moods/pass-out.png'
+          if (hasNotPassedOut) {
+            toggeleInteractivity()
+            hasNotPassedOut = false
+          }
+        }
+        else if (lowestStat < 30) {
+          imageSrc = 'moods/tired.png'
+        }
+        else if (lowestStat < 80) {
+          imageSrc = 'moods/neutral.png'
+        }
+        else of (lowestStat < 175) {
+          imageSrc = 'moods/upbeat.png'
+        }
+        else {
+          imageSrc = 'moods/exuberant.png'
+        }
+
+        document.getElementById("pet-image").src = imageSrc
+      }
+
+      var agePet = () => {
+        water = water - 8
+        food = food - 4
+        play = play - 2
+        groom = groom - 1
+        updateHTML()
+      }
+
+      // Set interval for age of pet
+      setInterval(agePet, 2000)
+
+      vartoggleInteractitivty = () => {
+        document.getElementById("food-row").classList.toggle("hidden")
+        document.getElementById("water-row").classList.toggle("hidden")
+        document.getElementById("play-row").classList.toggle("hidden")
+        document.getElementById("groom-row").classList.toggle("hidden")
+        document.getElementById("end-game").classList.toggle("hidden")
+      }
+
+      // Restart stats
+      var restart = () => {
+        food = 50
+        water = 50
+        play = 50
+        groom = 50
+        hasNotPassedOut = true
+        toggeleInteractivity()
+        updateHTML()
+      }
+
+    </script>
 </html>
