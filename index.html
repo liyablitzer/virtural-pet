@@ -43,8 +43,8 @@
             align-items: center;
             }
             .activity-icon {
-            height: 40px;
-            height: 40px;
+            height: 50px;
+            height: 50px;
             }
             .activity-button {
             background-color: peru;
@@ -67,26 +67,28 @@
           <div class="pet name"><h1>Tucker</h1></div>
           <div>D.o.b. = 11/27/2019</div>
           <div>Breed = labrador retriever</div>
+          <div>Level of Care = Advanced</div>
           <div class="description">He is very loyal and family-friendly. He likes to run outside and play fetch.</div>
           <div>His favorite toy is a squeaky stuffed moose with a red scarf.</div>
-       
         </div>
+
         <div class="main">
             <div class="image-area">
                 <img class="pet-image" src="moods/neutral.png"/>
             </div>
+
             <div class="interactive-area">
 
               <div id="food-row" class="activity-row">
                 <img class="activity-icon" src="icons/food.png" />
                 <div id="food-stat" class="activity-stat">50</div>
-                <div class="activity-button" onclick="giveFood()">Eat food</div>
+                <div class="activity-button" onclick="giveFood()">Feed</div>
               </div>
 
               <div id="water-row" class="activity-row">
                 <img class="activity-icon" src="icons/water.png" />
                 <div id="water-stat" class="activity-stat">50</div>
-                <div class="activity-button" onclick="giveWater()">Drink water</div>
+                <div class="activity-button" onclick="giveWater()">Water</div>
               </div>
 
               <div id="play-row" class="activity-row">
@@ -101,19 +103,24 @@
                 <div class="activity-button" onclick="giveGroom()">Groom</div>
               </div>
 
+              <div id="sleep-row" class="activity-row">
+                <img class="activity-icon" src="icons/sleep.png" />
+                <div id="sleep-stat" class="activity-stat">50</div>
+                <div class="activity-button" onclick="giveSleep()">Sleep</div>
+              </div>
+
               <div id="end-game" class="end-game hidden">
                 <div class="message">
                   OH NO! Tucker passed out!
                 </div>
-                <div class="activity-button restart-button" onclick="restart()">
+              <div class="activity-button restart-button" onclick="restart()">
                   Restart
-                </div>
               </div>
-  
             </div>
+  
           </div>
+        </div>
     </body>
-
     <script>
     // Variables
       var hasNotPassedOut = true
@@ -122,13 +129,15 @@
       var water = 50
       var play = 50
       var groom = 50
+      var sleep = 50
 
     // Food
       var giveFood = () => {
-        foor = food + 5
+        food = food + 8
         water = water - 2
         play = play - 2
         groom = groom - 1
+        sleep = sleep - 3
 
         updateHTML()
       }
@@ -139,26 +148,40 @@
         food = food - 1
         play = play - 2
         groom = groom - 1
+        sleep = sleep - 3
 
         updateHTML()
       }
 
     // Play
       var givePlay = () => {
-        play = play + 10
-        water = water - 10
-        food = food - 5
-        groom = groom - 15
+        play = play + 8
+        water = water - 3
+        food = food - 3
+        groom = groom - 5
+        sleep = sleep - 6
 
         updateHTML()
       }
 
     // Groom
       var giveGroom = () => {
-        groom = groom + 20
-        water = water - 5
-        food = food - 5
-        play = play - 5
+        groom = groom + 8
+        water = water - 2
+        food = food - 2
+        play = play - 1
+        sleep = sleep - 3
+
+        updateHTML()
+      }
+
+    // Sleep
+      var giveSleep = () => {
+        sleep = sleep + 6
+        groom = groom -1
+        water = water - 2
+        food = food - 2
+        play = play - 1
 
         updateHTML()
       }
@@ -168,45 +191,49 @@
         document.getElementById("water-stat").innerHTML = water
         document.getElementById("play-stat").innerHTML = play
         document.getElementById("groom-stat").innerHTML = groom
+        document.getElementById("sleep-stat").innerHTML = sleep
 
-        var lowestStat = Math.min(food, water, play, groom)
+        var lowestStat = Math.min(food, water, play, groom, sleep)
         var imageSrc
 
         if (lowestStat <= 0) {
-          imageSrc = 'moods/pass-out.png'
+          imageSrc = "moods/passed-out.png"
           if (hasNotPassedOut) {
             toggleInteractivity()
             hasNotPassedOut = false
           }
+        } else if (lowestStat < 20) {
+            imageSrc = "moods/tired.png"
         } else if (lowestStat < 50) {
-          imageSrc = 'moods/tired.png'
-        } else if (lowestStat < 80) {
-          imageSrc = 'moods/neutral.png'
+            imageSrc = "moods/neutral.png"
         } else if (lowestStat < 100) {
-          imageSrc = 'moods/upbeat.png'
+            imageSrc = "moods/upbeat.png"
         } else {
-          imageSrc = 'moods/exuberant.png'
+            imageSrc = "moods/exuberant.png"
         }
 
         document.getElementById("pet-image").src = imageSrc
       }
 
       var agePet = () => {
-        water = water - 3
-        food = food - 2
-        play = play - 3
+        water = water - 2
+        food = food - 1
+        play = play - 2
         groom = groom - 1
+        sleep = sleep - 1
+
         updateHTML()
       }
 
       // Set interval for age of pet
-      setInterval(agePet, 2000)
+      setInterval(agePet, 2500)
 
       var toggleInteractivity = () => {
         document.getElementById("food-row").classList.toggle("hidden")
         document.getElementById("water-row").classList.toggle("hidden")
         document.getElementById("play-row").classList.toggle("hidden")
         document.getElementById("groom-row").classList.toggle("hidden")
+        document.getElementById("sleep-row").classList.toggle("hidden")
         document.getElementById("end-game").classList.toggle("hidden")
       }
 
@@ -216,6 +243,7 @@
         water = 50
         play = 50
         groom = 50
+        sleep = 50
         hasNotPassedOut = true
         toggleInteractivity()
         updateHTML()
