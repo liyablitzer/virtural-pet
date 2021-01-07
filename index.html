@@ -5,12 +5,15 @@
             body {
             font-family: Georgia, 'Times New Roman', Times, serif;
             font-weight: bold;
+            text-align: left;
+            font-size: 18px;
             }
             .header {
             padding: 32x;
+            font-family: fantasy;
             }
             .pet-name {
-            font-size: 32px;
+            font-size: 40px;
             }
             .main {
             display: grid;
@@ -54,19 +57,23 @@
             justify-items: center;
             align-items: center;
             }
-            .hideden {
+            .hidden {
               display: none;
             }
         </style>
     </head>
     <body>
         <div class="header">
-          <div class="pet name"><b>Scruncie</b></div>
-          <div class="description">He is very loyal and family-friendly. He likes to run outside and play fetch. His favorite toy is a squeaky stuffed moose with a red scarf.</div>
+          <div class="pet name"><h1>Tucker</h1></div>
+          <div>D.o.b. = 11/27/2019</div>
+          <div>Breed = labrador retriever</div>
+          <div class="description">He is very loyal and family-friendly. He likes to run outside and play fetch.</div>
+          <div>His favorite toy is a squeaky stuffed moose with a red scarf.</div>
+       
         </div>
         <div class="main">
             <div class="image-area">
-                <img class="pet-image" src='moods/neutral.png' />
+                <img class="pet-image" src="moods/neutral.png"/>
             </div>
             <div class="interactive-area">
 
@@ -96,7 +103,7 @@
 
               <div id="end-game" class="end-game hidden">
                 <div class="message">
-                  OH NO! Your pet has passed out! :(
+                  OH NO! Tucker passed out!
                 </div>
                 <div class="activity-button restart-button" onclick="restart()">
                   Restart
@@ -162,26 +169,22 @@
         document.getElementById("play-stat").innerHTML = play
         document.getElementById("groom-stat").innerHTML = groom
 
-        varlowestStat = Math.min(food, water, play, groom)
+        var lowestStat = Math.min(food, water, play, groom)
         var imageSrc
 
         if (lowestStat <= 0) {
           imageSrc = 'moods/pass-out.png'
           if (hasNotPassedOut) {
-            toggeleInteractivity()
+            toggleInteractivity()
             hasNotPassedOut = false
           }
-        }
-        else if (lowestStat < 30) {
+        } else if (lowestStat < 50) {
           imageSrc = 'moods/tired.png'
-        }
-        else if (lowestStat < 80) {
+        } else if (lowestStat < 80) {
           imageSrc = 'moods/neutral.png'
-        }
-        else if (lowestStat < 170) {
+        } else if (lowestStat < 100) {
           imageSrc = 'moods/upbeat.png'
-        }
-        else {
+        } else {
           imageSrc = 'moods/exuberant.png'
         }
 
@@ -199,7 +202,7 @@
       // Set interval for age of pet
       setInterval(agePet, 2000)
 
-      vartoggleInteractitivty = () => {
+      var toggleInteractivity = () => {
         document.getElementById("food-row").classList.toggle("hidden")
         document.getElementById("water-row").classList.toggle("hidden")
         document.getElementById("play-row").classList.toggle("hidden")
@@ -214,7 +217,7 @@
         play = 50
         groom = 50
         hasNotPassedOut = true
-        toggeleInteractivity()
+        toggleInteractivity()
         updateHTML()
       }
 
