@@ -210,16 +210,17 @@
           toggleInteractivity()
           hasNotPassedOut = false
         }
-        } else if (lowestStat < 20) {
+      } else if (lowestStat < 20) {
           imageSrc = "imgs/tired.png"
-        } else if (lowestStat < 50) {
+      } else if (lowestStat < 50) {
           imageSrc = "imgs/neutral.png"
-        } else if (lowestStat < 100) {
+      } else if (lowestStat < 100) {
           imageSrc = "imgs/upbeat.png"
-        } else {
+      } else {
           imageSrc = "imgs/exuberant.png"
-          document.getElementById("pet-image").src = "imgs_exuberant.png";
         }
+          document.getElementById("pet-image").src = imageSrc
+        
     }
 
       var agePet = () => {
