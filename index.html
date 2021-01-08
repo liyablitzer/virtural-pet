@@ -82,7 +82,7 @@
 
         <div class="main">
             <div class="image-area">
-                <img id="pet-image" class="pet-image" src="imgs/neutral.png" />
+                <img id="pet-image" class="pet-image" src="imgs/exuberant.png" />
             </div>
 
             <div class="interactive-area">
@@ -141,21 +141,21 @@
 
     // Food
       var giveFood = () => {
-        food = food + 10
-        water = water - 5
-        play = play - 5
-        groom = groom - 5
-        sleep = sleep - 5
+        food = food + 5
+        water = water - 1
+        play = play - 2
+        groom = groom - 1
+        sleep = sleep - 2
 
         updateHTML()
       }
 
     // Water
       var giveWater = () => {
-        water = water + 15
+        water = water + 3
         food = food - 2
-        play = play - 3
-        groom = groom - 1
+        play = play - 1
+        groom = groom - 2
         sleep = sleep - 1
 
         updateHTML()
@@ -163,33 +163,33 @@
 
     // Play
       var givePlay = () => {
-        play = play + 8
-        water = water - 3
-        food = food - 3
-        groom = groom - 3
-        sleep = sleep - 2
+        play = play + 3
+        water = water - 2
+        food = food - 2
+        groom = groom - 1
+        sleep = sleep - 1
 
         updateHTML()
       }
 
     // Groom
       var giveGroom = () => {
-        groom = groom + 10
-        water = water - 3
-        food = food - 2
+        groom = groom + 2
+        water = water - 1
+        food = food - 1
         play = play - 1
-        sleep = sleep - 2
+        sleep = sleep - 1
 
         updateHTML()
       }
 
     // Sleep
       var giveSleep = () => {
-        sleep = sleep + 10
-        groom = groom - 2
-        water = water - 1
-        food = food - 3
-        play = play - 3
+        sleep = sleep + 5
+        groom = groom - 1
+        water = water - 2
+        food = food - 1
+        play = play - 2
 
         updateHTML()
       }
@@ -216,7 +216,7 @@
           imageSrc = "imgs/neutral.png"
       } else if (lowestStat < 100) {
           imageSrc = "imgs/upbeat.png"
-      } else if (lowestStat < 115){
+      } else if (lowestStat < 125){
           imageSrc = "imgs/exuberant.png"
         }
           document.getElementById("pet-image").src = imageSrc
@@ -224,11 +224,11 @@
     }
 
       var agePet = () => {
-        water = water - 2
-        food = food - 2
-        play = play - 2
+        water = water - 3
+        food = food - 7
+        play = play - 4
         groom = groom - 2
-        sleep = sleep - 2
+        sleep = sleep - 6
 
         updateHTML()
       }
