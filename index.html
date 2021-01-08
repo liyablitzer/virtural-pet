@@ -6,31 +6,38 @@
             font-family: Georgia, 'Times New Roman', Times, serif;
             font-weight: bold;
             text-align: left;
-            font-size: 18px;
+            font-size: 16px;
+            background-image: url(imgs/indoor-background.png);
+            background-repeat: no-repeat;
+            background-size: cover;
             }
             .header {
             padding: 32x;
-            font-family: fantasy;
+            font-family: inherit;
             }
             .pet-name {
             font-size: 40px;
+            font-family: monospace;
             }
             .main {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1fr 1fr 1fr;
             }
             .image-area {
-            background-color: silver;
+          
             display: grid;
             justify-items: center;
+
             }
             .pet-image {
             height: 500px;
             max-width: 100%;
-            padding: 3rem;
+            padding: 32px;
             }
             .interactive-area {
             background-color: lightblue;
+            max-width: 90%;
+            max-height: 80%;
             display: grid;
             align-items: center; /* Centered vertically */
             justify-items: center; /* Centered horizontally */
@@ -64,17 +71,19 @@
     </head>
     <body>
         <div class="header">
-          <div class="pet-name"><h1>Tucker</h1></div>
+          <div class="pet-name">Tucker</div>
+          <img src="icons/paw-prints.png" style="width:200px; height:200px; float: right;"/>
           <div>D.o.b. = 11/27/2019</div>
           <div>Breed = labrador retriever</div>
           <div>Level of Care = Advanced</div>
           <div class="description">He is very loyal and family-friendly. He likes to run outside and play fetch.</div>
           <div>His favorite toy is a squeaky stuffed moose with a red scarf.</div>
+          <p></p>
         </div>
 
         <div class="main">
             <div class="image-area">
-                <img class="pet-image" src="moods/neutral.png"/>
+                <img id="pet-image" class="pet-image" src="imgs/neutral.png" />
             </div>
 
             <div class="interactive-area">
@@ -193,27 +202,26 @@
         document.getElementById("groom-stat").innerHTML = groom
         document.getElementById("sleep-stat").innerHTML = sleep
 
-        var lowestStat = Math.min(food, water, play, groom, sleep)
-        var imageSrc
+      var lowestStat = Math.min(food, water, play, groom, sleep)
+      var imageSrc
 
-        if (lowestStat <= 0) {
-          imageSrc = "moods/passed-out.png"
-          if (hasNotPassedOut) {
-            toggleInteractivity()
-            hasNotPassedOut = false
-          }
-        } else if (lowestStat < 20) {
-            imageSrc = "moods/tired.png"
-        } else if (lowestStat < 50) {
-            imageSrc = "moods/neutral.png"
-        } else if (lowestStat < 100) {
-            imageSrc = "moods/upbeat.png"
-        } else {
-            imageSrc = "moods/exuberant.png"
+      if (lowestStat <= 0) {
+        imageSrc = "imgs/passed-out.png"
+        if (hasNotPassedOut) {
+          toggleInteractivity()
+          hasNotPassedOut = false
         }
-
-        document.getElementById("pet-image").src = imageSrc
-      }
+        } else if (lowestStat < 20) {
+          imageSrc = "imgs/tired.png"
+        } else if (lowestStat < 50) {
+          imageSrc = "imgs/neutral.png"
+        } else if (lowestStat < 100) {
+          imageSrc = "imgs/upbeat.png"
+        } else {
+          imageSrc = "imgs/exuberant.png"
+          document.getElementById("pet-image").src = "imgs_exuberant.png";
+        }
+    }
 
       var agePet = () => {
         water = water - 2
@@ -226,7 +234,7 @@
       }
 
       // Set interval for age of pet
-      setInterval(agePet, 2500)
+      setInterval(agePet, 2000)
 
       var toggleInteractivity = () => {
         document.getElementById("food-row").classList.toggle("hidden")
