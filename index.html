@@ -89,31 +89,31 @@
 
               <div id="food-row" class="activity-row">
                 <img class="activity-icon" src="icons/food.png" />
-                <div id="food-stat" class="activity-stat">50</div>
+                <div id="food-stat" class="activity-stat">100</div>
                 <div class="activity-button" onclick="giveFood()">Feed</div>
               </div>
 
               <div id="water-row" class="activity-row">
                 <img class="activity-icon" src="icons/water.png" />
-                <div id="water-stat" class="activity-stat">50</div>
+                <div id="water-stat" class="activity-stat">100</div>
                 <div class="activity-button" onclick="giveWater()">Water</div>
               </div>
 
               <div id="play-row" class="activity-row">
                 <img class="activity-icon" src="icons/play.png" />
-                <div id="play-stat" class="activity-stat">50</div>
+                <div id="play-stat" class="activity-stat">100</div>
                 <div class="activity-button" onclick="givePlay()">Play</div>
               </div>
 
               <div id="groom-row" class="activity-row">
                 <img class="activity-icon" src="icons/groom.png" />
-                <div id="groom-stat" class="activity-stat">50</div>
+                <div id="groom-stat" class="activity-stat">100</div>
                 <div class="activity-button" onclick="giveGroom()">Groom</div>
               </div>
 
               <div id="sleep-row" class="activity-row">
                 <img class="activity-icon" src="icons/sleep.png" />
-                <div id="sleep-stat" class="activity-stat">50</div>
+                <div id="sleep-stat" class="activity-stat">100</div>
                 <div class="activity-button" onclick="giveSleep()">Sleep</div>
               </div>
 
@@ -133,30 +133,30 @@
     // Variables
       var hasNotPassedOut = true
 
-      var food = 50
-      var water = 50
-      var play = 50
-      var groom = 50
-      var sleep = 50
+      var food = 100
+      var water = 100
+      var play = 100
+      var groom = 100
+      var sleep = 100
 
     // Food
       var giveFood = () => {
-        food = food + 8
-        water = water - 2
-        play = play - 2
-        groom = groom - 1
-        sleep = sleep - 3
+        food = food + 10
+        water = water - 5
+        play = play - 5
+        groom = groom - 5
+        sleep = sleep - 5
 
         updateHTML()
       }
 
     // Water
       var giveWater = () => {
-        water = water + 5
-        food = food - 1
-        play = play - 2
+        water = water + 15
+        food = food - 2
+        play = play - 3
         groom = groom - 1
-        sleep = sleep - 3
+        sleep = sleep - 1
 
         updateHTML()
       }
@@ -166,30 +166,30 @@
         play = play + 8
         water = water - 3
         food = food - 3
-        groom = groom - 5
-        sleep = sleep - 6
+        groom = groom - 3
+        sleep = sleep - 2
 
         updateHTML()
       }
 
     // Groom
       var giveGroom = () => {
-        groom = groom + 8
-        water = water - 2
+        groom = groom + 10
+        water = water - 3
         food = food - 2
         play = play - 1
-        sleep = sleep - 3
+        sleep = sleep - 2
 
         updateHTML()
       }
 
     // Sleep
       var giveSleep = () => {
-        sleep = sleep + 6
-        groom = groom -1
-        water = water - 2
-        food = food - 2
-        play = play - 1
+        sleep = sleep + 10
+        groom = groom - 2
+        water = water - 1
+        food = food - 3
+        play = play - 3
 
         updateHTML()
       }
@@ -210,13 +210,13 @@
           toggleInteractivity()
           hasNotPassedOut = false
         }
-      } else if (lowestStat < 20) {
-          imageSrc = "imgs/tired.png"
       } else if (lowestStat < 50) {
+          imageSrc = "imgs/tired.png"
+      } else if (lowestStat < 75) {
           imageSrc = "imgs/neutral.png"
       } else if (lowestStat < 100) {
           imageSrc = "imgs/upbeat.png"
-      } else {
+      } else if (lowestStat < 115){
           imageSrc = "imgs/exuberant.png"
         }
           document.getElementById("pet-image").src = imageSrc
@@ -225,16 +225,16 @@
 
       var agePet = () => {
         water = water - 2
-        food = food - 1
+        food = food - 2
         play = play - 2
-        groom = groom - 1
-        sleep = sleep - 1
+        groom = groom - 2
+        sleep = sleep - 2
 
         updateHTML()
       }
 
       // Set interval for age of pet
-      setInterval(agePet, 2000)
+      setInterval(agePet, 3500)
 
       var toggleInteractivity = () => {
         document.getElementById("food-row").classList.toggle("hidden")
@@ -247,11 +247,11 @@
 
       // Restart stats
       var restart = () => {
-        food = 50
-        water = 50
-        play = 50
-        groom = 50
-        sleep = 50
+        food = 100
+        water = 100
+        play = 100
+        groom = 100
+        sleep = 100
         hasNotPassedOut = true
         toggleInteractivity()
         updateHTML()
